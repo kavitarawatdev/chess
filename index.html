@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chess: Live Match</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <!-- Game Intro -->
+    <section class="intro-section section flex flex-centered">
+        <div class="container intro-container flex flex-col flex-centered">
+            <div class="headings flex flex-centered flex-col">
+                <h1>Let's play chess</h1>
+                <h2>Play as:</h2>
+            </div>
+            <div class="user-choice flex flex-centered">
+                <div class="flex flex-centered flex-col">
+                    <img src="ChessPieces/BlackPieces/black-king.png">
+                    <a type="button" class="capitalize common-btn player-name">black</a>
+                </div>
+                <div class="flex flex-centered flex-col">
+                    <img src="ChessPieces/WhitePieces/white-king.png">
+                    <a type="button" class="capitalize common-btn player-name">white</a>
+                </div>
+            </div>
+    </section>
+
+    <!-- result section -->
+    <section class="section popup-section result-section flex hidden flex-centered absolute">
+        <div class="container result-container flex flex-centered">
+            <div class="message-box flex-col flex flex-centered">
+                <h3 class="winner-message"></h3>
+                <img class="black-winner hidden" src="ChessPieces/BlackPieces/black-king.png">
+                <img class="white-winner hidden" src="ChessPieces/WhitePieces/white-king.png">
+                <a type="button" class="newGame common-btn capitalize">play again</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- chess board -->
+    <main class="section flex game-section flex-centered flex-col hidden">
+        <section class="chessboard container flex flex-col flex-centered">
+            <!-- ==================================
+             score-container
+             ====================================== -->
+            <div class="score-container container absolute flex flex-row" id="black-score-counter">
+                <div class="flex invisible captured-pieces flex flex-row" id="capturedByBlack">
+                    <input class="points" type="text" id="blackPoints" value="" disabled>
+                </div>
+                <div class="timer flex flex-row flex-centered" id="timerForBlack">
+                    <input class="tensMin" disabled type="text" value="1">
+                    <input class="onesMin" disabled type="text" value="0">
+                    <input type="text" disabled value=":">
+                    <input class="tensSec" disabled type="text" value="0">
+                    <input class="onesSec" disabled type="text" value="0">
+                </div>
+            </div>
+
+            <!-- ========================
+             pawn-promo
+             ======================= -->
+            <div class="pawn-promo absolute hidden flex-col" id="whitepawn-promo">
+                <ol class="flex flex-row pawn-promo-list">
+                    <li class="flex flex-centered" onclick="handlePawnPromo(event)">
+                        <img class="white-queen" src="ChessPieces/WhitePieces/white-queen.png">
+                    </li>
+                    <li class="flex flex-centered" onclick="handlePawnPromo(event)">
+                        <img class="white-bishop" src="ChessPieces/WhitePieces/white-bishop.png"></li>
+                    <li class="flex flex-centered" onclick="handlePawnPromo(event)">
+                        <img class="white-knight" src="ChessPieces/WhitePieces/white-nightrd.png"></li>
+                    <li class="flex flex-centered" onclick="handlePawnPromo(event)">
+                        <img class="white-rook" src="ChessPieces/WhitePieces/white-rook.png">
+                    </li>
+                </ol>
+                <div class="arrow"></div>
+            </div>
+            <!-- ========================
+            square boxes
+             ======================= -->
+            <!-- row 1 -->
+            <div class="boxes flex flex-centered">
+
+                <div class="box flex flex-centered" id="a8">
+                    <img class="black-rook" src="ChessPieces\BlackPieces\black-rook.png" data-ismoved=false>
+                </div>
+
+                <div class="box flex flex-centered" id="b8">
+                    <img class="black-knight" src="ChessPieces\BlackPieces\black-nightrd.png">
+                </div>
+
+                <div class="box flex flex-centered" id="c8">
+                    <img class="black-bishop" src="ChessPieces\BlackPieces\black-bishop.png">
+                </div>
+
+                <div class="box flex flex-centered" id="d8">
+                    <img class="black-queen" src="ChessPieces\BlackPieces\black-queen.png">
+                </div>
+
+                <div class="box flex flex-centered" id="e8">
+                    <img class="black-king" src="ChessPieces\BlackPieces\black-king.png" data-ischeck=false
+                        data-ismoved=false>
+                </div>
+
+                <div class="box flex flex-centered" id="f8">
+                    <img class="black-bishop" src="ChessPieces\BlackPieces\black-bishop.png">
+                </div>
+
+                <div class="box flex flex-centered" id="g8">
+                    <img class="black-knight" src="ChessPieces\BlackPieces\black-nightrd.png">
+                </div>
+
+                <div class="box flex flex-centered" id="h8">
+                    <img class="black-rook" src="ChessPieces\BlackPieces\black-rook.png" data-ismoved=false>
+                </div>
+
+            </div>
+
+            <!-- row -2 -->
+            <div class="boxes flex flex-centered">
+                <div class="box flex flex-centered" id="a7">
+                    <img class="black-pawn" src="ChessPieces\BlackPieces\black-bpawn.png">
+                </div>
+                <div class="box flex flex-centered" id="b7">
+                    <img class="black-pawn" src="ChessPieces\BlackPieces\black-bpawn.png">
+                </div>
+                <div class="box flex flex-centered" id="c7">
+                    <img class="black-pawn" src="ChessPieces\BlackPieces\black-bpawn.png">
+                </div>
+                <div class="box flex flex-centered" id="d7">
+                    <img class="black-pawn" src="ChessPieces\BlackPieces\black-bpawn.png">
+                </div>
+                <div class="box flex flex-centered" id="e7">
+                    <img class="black-pawn" src="ChessPieces\BlackPieces\black-bpawn.png">
+                </div>
+                <div class="box flex flex-centered" id="f7">
+                    <img class="black-pawn" src="ChessPieces\BlackPieces\black-bpawn.png">
+                </div>
+                <div class="box flex flex-centered" id="g7">
+                    <img class="black-pawn" src="ChessPieces\BlackPieces\black-bpawn.png">
+                </div>
+                <div class="box flex flex-centered" id="h7">
+                    <img class="black-pawn" src="ChessPieces\BlackPieces\black-bpawn.png">
+                </div>
+            </div>
+
+            <!-- row -3 -->
+            <div class="boxes flex flex-centered">
+                <div class="box flex flex-centered" id="a6"></div>
+                <div class="box flex flex-centered" id="b6"></div>
+                <div class="box flex flex-centered" id="c6"></div>
+                <div class="box flex flex-centered" id="d6"></div>
+                <div class="box flex flex-centered" id="e6"></div>
+                <div class="box flex flex-centered" id="f6"></div>
+                <div class="box flex flex-centered" id="g6"></div>
+                <div class="box flex flex-centered" id="h6"></div>
+            </div>
+
+            <!-- row -4 -->
+            <div class="boxes flex flex-centered">
+                <div class="box flex flex-centered" id="a5"></div>
+                <div class="box flex flex-centered" id="b5"></div>
+                <div class="box flex flex-centered" id="c5"></div>
+                <div class="box flex flex-centered" id="d5"></div>
+                <div class="box flex flex-centered" id="e5"></div>
+                <div class="box flex flex-centered" id="f5"></div>
+                <div class="box flex flex-centered" id="g5"></div>
+                <div class="box flex flex-centered" id="h5"></div>
+            </div>
+
+            <!-- row -5 -->
+            <div class="boxes flex flex-centered">
+                <div class="box flex flex-centered" id="a4"></div>
+                <div class="box flex flex-centered" id="b4"></div>
+                <div class="box flex flex-centered" id="c4"></div>
+                <div class="box flex flex-centered" id="d4"></div>
+                <div class="box flex flex-centered" id="e4"></div>
+                <div class="box flex flex-centered" id="f4"></div>
+                <div class="box flex flex-centered" id="g4"></div>
+                <div class="box flex flex-centered" id="h4"></div>
+            </div>
+
+            <!-- row -6 -->
+            <div class="boxes flex flex-centered">
+                <div class="box flex flex-centered" id="a3"></div>
+                <div class="box flex flex-centered" id="b3"></div>
+                <div class="box flex flex-centered" id="c3"></div>
+                <div class="box flex flex-centered" id="d3"></div>
+                <div class="box flex flex-centered" id="e3"></div>
+                <div class="box flex flex-centered" id="f3"></div>
+                <div class="box flex flex-centered" id="g3"></div>
+                <div class="box flex flex-centered" id="h3"></div>
+            </div>
+
+            <!-- row -7 -->
+            <div class="boxes flex flex-centered">
+                <div class="box flex flex-centered" id="a2">
+                    <img class="white-pawn" src="ChessPieces\WhitePieces\white-bpawn.png">
+                </div>
+                <div class="box flex flex-centered" id="b2">
+                    <img class="white-pawn" src="ChessPieces\WhitePieces\white-bpawn.png">
+                </div>
+                <div class="box flex flex-centered" id="c2">
+                    <img class="white-pawn" src="ChessPieces\WhitePieces\white-bpawn.png">
+                </div>
+                <div class="box flex flex-centered" id="d2">
+                    <img class="white-pawn" src="ChessPieces\WhitePieces\white-bpawn.png">
+                </div>
+                <div class="box flex flex-centered" id="e2">
+                    <img class="white-pawn" src="ChessPieces\WhitePieces\white-bpawn.png">
+                </div>
+                <div class="box flex flex-centered" id="f2">
+                    <img class="white-pawn" src="ChessPieces\WhitePieces\white-bpawn.png">
+                </div>
+                <div class="box flex flex-centered" id="g2">
+                    <img class="white-pawn" src="ChessPieces\WhitePieces\white-bpawn.png">
+                </div>
+                <div class="box flex flex-centered" id="h2">
+                    <img class="white-pawn" src="ChessPieces\WhitePieces\white-bpawn.png">
+                </div>
+            </div>
+
+            <!-- row -8 -->
+            <div class="boxes flex flex-centered">
+                <div class="box flex flex-centered" id="a1">
+                    <img class="white-rook" src="ChessPieces\WhitePieces\white-rook.png" data-ismoved=false>
+                </div>
+                <div class="box flex flex-centered" id="b1">
+                    <img class="white-knight" src="ChessPieces\WhitePieces\white-nightrd.png">
+                </div>
+                <div class="box flex flex-centered" id="c1">
+                    <img class="white-bishop" src="ChessPieces\WhitePieces\white-bishop.png">
+                </div>
+                <div class="box flex flex-centered" id="d1">
+                    <img class="white-queen" src="ChessPieces\WhitePieces\white-queen.png">
+                </div>
+                <div class="box flex flex-centered" id="e1">
+                    <img class="white-king" src="ChessPieces\WhitePieces\white-king.png" data-ischeck=false
+                        data-ismoved=false>
+                </div>
+                <div class="box flex flex-centered" id="f1">
+                    <img class="white-bishop" src="ChessPieces\WhitePieces\white-bishop.png">
+                </div>
+                <div class="box flex flex-centered" id="g1">
+                    <img class="white-knight" src="ChessPieces\WhitePieces\white-nightrd.png">
+                </div>
+                <div class="box flex flex-centered" id="h1">
+                    <img class="white-rook" src="ChessPieces\WhitePieces\white-rook.png" data-ismoved=false>
+                </div>
+            </div>
+            <!-- ==================
+             pawn-promo
+             ===================== -->
+            <div class="container absolute pawn-promo hidden flex flex-col" id="blackpawn-promo">
+                <div class="arrow"></div>
+                <ol class="flex flex-row pawn-promo-list">
+                    <li class="flex flex-centered">
+                        <img class="black-queen" onclick="handlePawnPromo(event)" src="ChessPieces/BlackPieces/black-queen.png"></li>
+                    <li class="flex flex-centered">
+                        <img class="black-bishop" onclick="handlePawnPromo(event)" src="ChessPieces/BlackPieces/black-bishop.png"></li>
+                    <li class="flex flex-centered">
+                        <img class="black-knight" onclick="handlePawnPromo(event)" src="ChessPieces/BlackPieces/black-nightrd.png"></li>
+                    <li class="flex flex-centered">
+                        <img class="black-rook" onclick="handlePawnPromo(event)" src="ChessPieces/BlackPieces/black-rook.png">
+                    </li>
+                </ol>
+            </div>
+            <!-- ==================================
+             score-container
+             ====================================== -->
+            <div class="score-container container absolute flex flex-row" id="white-score-counter">
+                <div class="captured-pieces invisible flex flex-row" id="capturedByWhite">
+                    <input class="points" type="text" id="whitePoints" disabled>
+                </div>
+                <div class="timer flex flex-row flex-centered" id="timerForWhite">
+                    <input class="tensMin" disabled type="text" value="1">
+                    <input class="onesMin" disabled type="text" value="0">
+                    <input type="text" disabled value=":">
+                    <input class="tensSec" disabled type="text" value="0">
+                    <input class="onesSec" disabled type="text" value="0">
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+
+
+    <script src="index.js"></script>
+    <script src="eventHandler.js"></script>
+    <script src="timeHandler.js"></script>
+    <script src="computer.js"></script>
+    <script src="kingCheck.js"></script>
+    <script src="pawnMove.js"></script>
+    <script src="pawnPromotion.js"></script>
+    <script src="pieceMovement.js"></script>
+    <script src="bishopMove.js"></script>
+    <script src="rookMove.js"></script>
+    <script src="queenMove.js"></script>
+    <script src="knightMove.js"></script>
+    <script src="kingMove.js"></script>
+    <script src="castling.js"></script>
+</body>
+
+</html>

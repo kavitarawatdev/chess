@@ -1,0 +1,306 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+:root{
+    --main-color: #75A47F;
+    --seconday-color: hsl(39, 77%, 83%);
+    --black-box : #557C56;
+    --white-box: #E7FBE6;
+
+}
+
+html{
+    font-size: 10px;
+    background-color: rgb(58, 8, 8);
+}
+
+input{
+    outline: none;
+    border: none;
+}
+
+h1{
+    font-size: 8rem;
+}
+h2{
+    font-size: 6rem;
+}
+/* ===============================
+reusable code
+====================================== */
+.invisible{
+    visibility: hidden;
+}
+
+.section{
+    height: 100lvh;
+}
+.absolute{
+    position: absolute;
+}
+.flex{
+    display: flex;
+}
+
+.flex-col{
+    flex-direction: column;
+}
+
+.flex-centered{
+    align-items: center;
+    justify-content: center;
+}
+.container{
+    width: 87rem;
+}
+
+.hidden{
+    display: none;
+}
+
+.capitalize{
+    text-transform: capitalize;
+}
+.common-btn{
+    padding: 1.5rem 2.5rem;
+    font-size: 4rem;
+    font-weight: 600;
+    color: white;
+    background-color:black;
+    border-radius: 3rem;
+    text-align: center;
+    cursor: pointer;
+}
+.common-btn:hover{
+    background-color: white;
+    color: black;
+}
+
+
+
+/* =====================================
+intro-section
+======================================= */
+.intro-section{
+    height: 100lvh;
+    background-color: #75A47F;
+}
+.intro-container{
+    padding:5rem;
+    background-color: #557C56;
+    gap:5rem;
+}
+.user-choice{
+    gap:15rem;
+}
+.user-choice > div{
+    gap:4rem;
+}
+.intro-section img{
+    height: 18rem;
+}
+
+/*==========================
+ result-section
+ ========================== */
+ .result-section{
+    width: 100lvw;
+ }
+.result-section img{
+    height: 10rem;
+}
+.result-container{
+    padding: 3rem;
+}
+
+.message-box{
+    gap:1rem;
+    background-color: rgba(117, 164, 127, 0.394);
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+}
+.popup-section .winner-message{
+    font-size: 4rem;
+    font-weight: 800;
+    text-align: center;
+}
+/* ===============================
+game-section
+================================= */
+.game-section{
+    height: 100lvh;
+}
+.chessboard{
+    padding: 3rem;
+}
+.boxes{
+    width: fit-content;
+}
+.box{
+    height: 10rem;
+    width: 10rem;
+}
+.box img{
+    height: 10rem;
+    width: 10rem;
+}
+
+/*=================================
+ pawn-promo 
+ ===================================*/
+ .pawn-promo img{
+    height: 11rem;
+    width: 11rem;
+ }
+ #whitepawn-promo{
+    margin-bottom: 100rem;
+ }
+ #blackpawn-promo{
+    margin-top: 100rem;
+ }
+
+.pawn-promo li {
+    list-style: none;
+    border-left: 1px solid black;
+    background-color: white;
+    z-index: 1000;
+}
+.pawn-promo li:hover{
+    background-color: rgba(255, 255, 0, 0.759);
+}
+
+.arrow{
+    height: 5rem;
+    width: 5rem;
+    background-color: white;
+    transform: rotate(45deg);
+    position: relative;
+    left: 2.5rem;
+    z-index: 100;
+ }
+ 
+.arrow:first-child {
+    top: 3rem;
+}
+.arrow:last-child {
+    bottom: 3rem;
+}
+
+/* ========================
+score-container 
+=============================*/
+.score-container{
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 3rem;
+}
+.captured-pieces{
+    padding: 0.5rem;
+    background-color: rgb(154, 153, 153);
+}
+.score-container img{
+    height:6rem;
+}
+#black-score-counter{
+    margin-bottom: 100rem;
+}
+#white-score-counter{
+    margin-top: 100rem;
+}
+.points{
+    width: 8rem;
+    font-size: 3rem;
+    font-weight: 700;
+    color: white;
+    background-color: transparent;
+}
+.timer{
+    padding: 1rem;
+}
+.timer input{
+    background-color: transparent;
+    font-size: 3rem;
+    max-width: 3rem;
+    text-align: center;
+    font-size: 4rem;
+    font-weight: 900;
+}
+#timerForBlack{
+    background-color: black;
+    color: white;
+}
+#timerForWhite{
+    color: black;
+    background-color: white;
+}
+
+/* dynamic */
+.bgEffect{
+    box-shadow:  0px 0px 0px 30px rgba(255, 255, 0, 0.495) inset;
+}
+span {
+    display: block;
+    height: 4rem;
+    width: 4rem;
+    border-radius: 50%;
+    background-color:  rgba(45, 44, 44, 0.487);
+}
+.check{
+    box-shadow:  0px 0px 0px 3rem rgba(216, 56, 56, 0.895) inset;
+}
+/*  */
+@media (max-width:425px) {
+    html{
+        font-size: 3px;
+    }
+    .container{
+        width: 87rem;
+    }
+}
+
+@media (min-width:425px) and (max-width:625px) {
+    html{
+        font-size: 3.5px;
+    }
+}
+@media (min-width:625px) and (max-width:845px) {
+    html{
+        font-size: 4.5px;
+    }
+}
+@media (min-width:845px) and (max-width:1150px) {
+    html{
+        font-size: 5px;
+    }
+}
+@media (min-width:1150px) and (max-width:1350px) {
+    html{
+        font-size: 5.5px;
+    }
+}
+@media (min-width:1350px) and (max-width:1600px) {
+    html{
+        font-size: 6px;
+    }
+}
+@media (min-width:1600px) and (max-width:2000px) {
+    html{
+        font-size: 8px;
+    }
+}
+@media (min-width:2000px) and (max-width:2500px) {
+    html{
+        font-size: 10px;
+    }
+}
+@media (min-width:2500px) {
+    html{
+        font-size: 11px;
+    }
+}
+
+
+
