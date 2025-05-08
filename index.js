@@ -16,11 +16,18 @@ let turn;
 let correctTurn;
 let handleBlackTimer;
 let handleWhiteTimer;
-
-
-
-
-boardDesign()
+// =======================
+// functn to rotate board
+// ======================
+const rotateBoard=()=>{
+    GAME.style.transform="rotate(180deg)";
+    GAME.querySelectorAll("img").forEach((img) => {
+        img.style.transform="rotate(180deg)";
+    });
+    GAME.querySelectorAll(".timer").forEach((timer) => {
+        timer.style.transform="rotate(180deg)";
+    });
+}
 // ==========================
 // INTRO_SECTION FUNCTIONALITY
 // =============================
@@ -34,20 +41,21 @@ USER_CHOICE.forEach(btn => {
     btn.addEventListener("click", (e) => handleUserChoice(e))
 })
 
-function handleUserChoice(e) {
+const handleUserChoice=(e)=> {
     player = e.target.innerHTML;
     INTRO_SECTION.classList.add("hidden");
     GAME_SECTION.classList.remove("hidden");
     boardDesign();
     turn = "white";
     player=="white"?computer="black":computer="white";
-    // player == "black" ? rotateBoard() : console.log("you are white");;
+    player == "black" ? rotateBoard() : console.log("you are white");;
     handleWhiteTimer = setInterval(whiteTimer, 1000);
+    if(computer=="white") handleComputerPlayer();
 }
 // ================================
 // board desighn
 // ==========================
-function boardDesign() {
+const boardDesign=()=> {
     for (let i = 0; i < 8; i++) {
         const box = BOXES[i].getElementsByClassName("box");
         if (i % 2 === 0) {
@@ -69,13 +77,10 @@ function boardDesign() {
         }
     }
 }
-
 // ==========================
 // handle turn
 // =========================
-
-//change turn
-const changeTurn = () => {
+const changeTurn = () => {                  //change turn
     switch (turn) {
         case "white":
             console.log("turn then:",turn);       
@@ -84,6 +89,7 @@ const changeTurn = () => {
             whitePawnPromo = false;
             clearInterval(handleWhiteTimer);
             handleBlackTimer = setInterval(blackTimer, 1000);     
+            if(computer=="black")handleComputerPlayer();
             break;
         case "black":
             console.log("turn then:",turn);       
@@ -92,13 +98,12 @@ const changeTurn = () => {
             blackPawnPromo = false;
             clearInterval(handleBlackTimer);
             handleWhiteTimer = setInterval(whiteTimer, 1000);
-            break;
-    
+            if(computer=="white")handleComputerPlayer();
+            break;  
         default:
             break;
     }
-    console.log("step 1 : callling handler computer from change turn");
-    if(turn == computer) handleComputerPlayer();
+
 }
 // ==================================
 // TIMER FUNCTION
@@ -106,53 +111,26 @@ const changeTurn = () => {
 const BLACK_KING = document.querySelector(".black-king");
 const WHITE_KING = document.querySelector(".white-king");
 
-
-
-// function rotateBoard(){
-//     document.querySelector("body").style.transform = "rotate(180deg)";
-//     let info = document.querySelectorAll(".info");
-//     let promoBars = document.querySelectorAll(".promo");
-//     let captures = document.querySelectorAll(".capturedPiece img");
-//     GAME.querySelectorAll("img").forEach((img) => {
-//         img.style.transform = "rotate(180deg)";
-//     });
-//     captures.forEach(ele => {
-//         ele.style.transform = "rotate(180deg)";
-//     })
-//     info.forEach(element => {
-//         element.style.transform = "rotate(180deg)"
-//     })
-// }
-
-
 // ====================================
 // highlight bg
 // ==========================================
-
-//function for adding yellow bg effect to squares
-const highlightBg = (id) => {
+const highlightBg = (id) => {//function for adding yellow bg effect to squares
     document.getElementById(id).classList.add("bgEffect");
 };
 
-// function for removing Yellow bg effect from squares
-const removeHighlight = (id) => {
+const removeHighlight = (id) => {// function for removing Yellow bg effect from squares
     if (id) document.getElementById(id).classList.remove("bgEffect");
 };
-
 // ==================================
 // HANDLE CIRCLE
 // =============================
-
-// function for showing Possible Move for Piece
-const showCircle = (SqID) => {
+const showCircle = (SqID) => {// function for showing Possible Move for Piece
     const SELECTED_PIECE = document.getElementById(SqID);
     const circle = document.createElement("span");
     circle.classList.add("round");
     SELECTED_PIECE.appendChild(circle);
 };
-
-// function for hiding Possible Move for Piece
-function clearCircle() {
+const clearCircle=()=> {   // function for hiding Possible Move for Piece
     const CIRCLE = document.querySelectorAll(".round");
     if (CIRCLE) {
         CIRCLE.forEach((span) => {
@@ -160,7 +138,6 @@ function clearCircle() {
         });
     }
 };
-
 // ==================================
 // HANDLE OPPONENTS
 // =============================
@@ -168,19 +145,17 @@ const CAPTURED_BY_BLACK = document.querySelector("#capturedByBlack");
 const CAPTURED_BY_WHITE = document.querySelector("#capturedByWhite");
 const BLACK_POINTS = document.querySelector("#blackPoints");
 const WHITE_POINTS = document.querySelector("#whitePoints");
-
-const captureOpponentFunction = (id, color) => {
+const captureOpponentFunction = (id, color) => {    // fuctn to check if opponent exist
     const SELECTED_PIECE = document.querySelector(`#${id} img`);
     if (SELECTED_PIECE) {
         if (SELECTED_PIECE.classList.value.includes(color)) {
-            SELECTED_PIECE.classList.add("opponent");
+            SELECTED_PIECE.classList.add("opponent"); // if opponent exist then add opponent class and return true
             return true;
         }
         return false;
     }
 };
-
-const removeOpponent = () => {
+const removeOpponent = () => { // funcn to remove opponent class
     const PIECES = document.querySelectorAll(".box img");
     PIECES.forEach((piece) => {
         if (piece.classList.value.includes("opponent")) {
@@ -188,22 +163,17 @@ const removeOpponent = () => {
         }
     });
 };
-
 // ================================
 // handle scores
 // ========================================
-
-// calculate totalpoints gained by players
-const handlePoints = (capture, capturedBy) => {
+const handlePoints = (capture, capturedBy) => {  // calculate totalpoints gained by players
     switch (capture.classList.value) {
         case "pawn":
             capturedBy.value += '+1';
             break;
-
         case "queen":
             capturedBy.value += '+9';
             break;
-
         default:
             capturedBy.value += '+3';
             break;
@@ -211,7 +181,7 @@ const handlePoints = (capture, capturedBy) => {
     capturedBy.value = `+${eval(capturedBy.value)}`;
 }
 
-function showingCapturedPieces(currPos) {
+const showingCapturedPieces=(currPos)=> { // functn to show chaptured pieces on ui
     const SELECTED_PIECE = currPos.querySelector("img");
     if (SELECTED_PIECE && !SELECTED_PIECE.classList.value.includes("king")) {
         let capturedPiece = document.createElement("div");
@@ -233,7 +203,6 @@ function showingCapturedPieces(currPos) {
         // }
     };
 }
-
 // ===================================================
 // popup-handle
 // ========================================
@@ -242,20 +211,19 @@ const NEWGAME = document.querySelector(".newGame");
 const WINNER_MESSAGE = document.querySelector('.winner-message');
 const BLACK_WINNER = document.querySelector(".black-winner");
 const WHITE_WINNER = document.querySelector(".white-winner");
-const showResultPopup = (message, winner)=> {
+
+const showResultPopup = (message, winner)=> { // funcn to show result on ui
     clearInterval(handleWhiteTimer);
     clearInterval(handleBlackTimer);
     BOX.forEach(box => box.disable = true)
     RESULT_SECTION.classList.remove("hidden");
     WINNER_MESSAGE.textContent = message;
     winner=="black" ? BLACK_WINNER.classList.remove("hidden") : WHITE_WINNER.classList.remove("hidden");
-    
 }
 
-NEWGAME.addEventListener("click", (e) => {
+NEWGAME.addEventListener("click", (e) => { // functn to reload page when newbtn is clicked
     location.reload();
 })
-
 
 //==============================
 // handle winner function

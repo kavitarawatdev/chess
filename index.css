@@ -151,6 +151,9 @@ game-section
 /*=================================
  pawn-promo 
  ===================================*/
+ .pawn-promo{
+    margin: 0% 50%;
+}
  .pawn-promo img{
     height: 11rem;
     width: 11rem;
@@ -251,6 +254,7 @@ span {
 .check{
     box-shadow:  0px 0px 0px 3rem rgba(216, 56, 56, 0.895) inset;
 }
+
 /*  */
 @media (max-width:425px) {
     html{
@@ -283,7 +287,7 @@ span {
 }
 @media (min-width:1350px) and (max-width:1600px) {
     html{
-        font-size: 6px;
+        font-size: 6.5px;
     }
 }
 @media (min-width:1600px) and (max-width:2000px) {
