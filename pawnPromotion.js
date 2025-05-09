@@ -51,6 +51,8 @@ const pawnPromotion = (id, promoBox) => {
     }
 
     if(promoBox.includes(computer)){
+        let selected_piece=selected_box.querySelector("li img")
+        selected_piece.click();
        ////incomeplete code
     }
 }
