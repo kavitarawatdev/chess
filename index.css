@@ -102,7 +102,13 @@ intro-section
 .intro-section img{
     height: 18rem;
 }
-
+.credit{
+text-transform: capitalize;
+font-size: 2.5rem;
+font-weight: 300;
+color: #f8f4e8;
+font-style: italic;
+}
 /*==========================
  result-section
  ========================== */

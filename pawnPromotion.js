@@ -49,7 +49,13 @@ const pawnPromotion = (id, promoBox) => {
         default:
             break;
     }
+
+    if(promoBox.includes(computer)){
+       ////incomeplete code
+    }
 }
+
+
 const handlePawnPromo=(event)=>{
     const selected_box=document.querySelector(`#${promoBox}`);
     document.querySelector(`#${promotedPawnId} img`).src = event.target.src;
