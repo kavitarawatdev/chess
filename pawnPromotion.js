@@ -7,39 +7,43 @@ let promoBox;
 
 const PAWN_PROMO_LIST=document.querySelectorAll('.pawn-promo-list li');
 
-const pawnPromotion = (promoBox) => {
+const pawnPromotion = (id, promoBox) => {
     const selected_box=document.querySelector(`#${promoBox}`);
     selected_box.classList.remove("hidden");
     switch (id[0]) {
         case "a":
-            selected_box.style.right = "-5rem";
+            selected_box.classList.add("pawn-promo-pos-a");
             break;
     
         case "b":
-            selected_box.style.right = "-15rem";
+            selected_box.classList.add("pawn-promo-pos-b");
+
             break;
     
         case "c":
-            selected_box.style.right = "-25rem";
+            selected_box.classList.add("pawn-promo-pos-c");
+
             break;
         
         case "d":
-            selected_box.style.right = "-35rem";
+            selected_box.classList.add("pawn-promo-pos-d")
+
             break;
         case "e":
-            selected_box.style.left = "0rem";
+            selected_box.classList.add("pawn-promo-pos-e");
+
             break;
 
         case "f":
-            selected_box.style.left = "10rem";
+            selected_box.classList.add("pawn-promo-pos-f");
             break;
 
         case "g":
-            selected_box.style.left = "20rem";
+            selected_box.classList.add("pawn-promo-pos-g");
             break;
     
         case "h":
-            selected_box.style.left = "30rem";
+            selected_box.classList.add("pawn-promo-pos-h");
             break;
     
         default:
@@ -51,8 +55,7 @@ const handlePawnPromo=(event)=>{
     document.querySelector(`#${promotedPawnId} img`).src = event.target.src;
     document.querySelector(`#${promotedPawnId} img`).className = event.target.className;
     selected_box.classList.add("hidden");
-    selected_box.style.left="none";
-    selected_box.style.right="none";
+    selected_box.classList.add("pawn-promo-pos-none");
     changeTurn()
     findingKings();
     check_on_white(white_king_pos);

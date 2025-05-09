@@ -41,7 +41,7 @@
     </section>
 
     <!-- chess board -->
-    <main class="section relative flex game-section flex-centered flex-col ">
+    <main class="section hidden flex game-section flex-centered flex-col ">
         <section class="chessboard container flex flex-col flex-centered">
             <!-- ==================================
              score-container
@@ -62,7 +62,7 @@
             <!-- ========================
              pawn-promo
              ======================= -->
-            <div class="pawn-promo absolute flex-col" id="whitepawn-promo">
+            <div class="pawn-promo absolute flex-col hidden" id="whitepawn-promo" style="left: none; right: none;">
                 <ol class="flex flex-row pawn-promo-list">
                     <li class="flex flex-centered" onclick="handlePawnPromo(event)">
                         <img class="white-queen" src="ChessPieces/WhitePieces/white-queen.png">

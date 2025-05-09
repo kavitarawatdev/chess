@@ -36,7 +36,7 @@ const pieceMovement = (pieceInitPos, pieceFinalPos) => {
             promoBox="blackpawn-promo";
         }  
         promotedPawnId=pieceFinalPos ;
-        pawnPromotion(promoBox)
+        pawnPromotion(pieceFinalPos, promoBox)
     }else{
         findingKings();
         check_on_white(white_king_pos);

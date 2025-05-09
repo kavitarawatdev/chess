@@ -2,29 +2,15 @@
 //    6.now getting the selected move of clicked piece
 // ============================================
 const gettingComputerPieceFinalPos = (moves) => {
-    console.log("step X", moves)
     let pieceFinalPos;
     let i = Math.floor(Math.random() * moves.length);
     moves.length == 1 ? pieceFinalPos = moves[0] : pieceFinalPos = moves[i];
     let pieceInitPos = pieceMovementState;
     setTimeout(() => {
-        console.log("step XI")
         pieceMovement(pieceInitPos, pieceFinalPos)
     }, 1000);
 }
 
-const recursion=()=>{
-    let arr=[]
-    let span = document.querySelectorAll(".box span");
-    for(let circle of span){
-        console.log(circle.parentNode);
-        console.log(circle);
-        console.log(circle.parentNode.id);
-        arr.push(circle.parentNode.id);
-    };
-    console.log(arr);
-    gettingComputerPieceFinalPos(arr)
-}
 // ==============================================
 //    5.now checking the possible moves and opponents of clicked piece
 // ============================================

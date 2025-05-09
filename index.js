@@ -108,8 +108,8 @@ const changeTurn = () => {                  //change turn
 // ==================================
 // TIMER FUNCTION
 // ===================================   
-const BLACK_KING = document.querySelector(".black-king");
-const WHITE_KING = document.querySelector(".white-king");
+const BLACK_KING = document.querySelector(".box .black-king");
+const WHITE_KING = document.querySelector(".box .white-king");
 
 // ====================================
 // highlight bg
@@ -131,7 +131,7 @@ const showCircle = (SqID) => {// function for showing Possible Move for Piece
     SELECTED_PIECE.appendChild(circle);
 };
 const clearCircle=()=> {   // function for hiding Possible Move for Piece
-    const CIRCLE = document.querySelectorAll(".round");
+    const CIRCLE = document.querySelectorAll(".box .round");
     if (CIRCLE) {
         CIRCLE.forEach((span) => {
             span.remove();

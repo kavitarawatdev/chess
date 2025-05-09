@@ -5,7 +5,7 @@ let black_king_pos;
 let white_king_pos;
 
 const findingKings = () => {
-   let kings = document.querySelectorAll('[class*="king"]');
+   let kings = document.querySelectorAll('.box [class*="king"]');
     kings.forEach((piece) => {
         if (piece.classList.value.includes("white-king")) {
             white_king_pos = piece.parentNode.id;

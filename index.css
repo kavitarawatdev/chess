@@ -255,6 +255,44 @@ span {
     box-shadow:  0px 0px 0px 3rem rgba(216, 56, 56, 0.895) inset;
 }
 
+.pawn-promo-pos-none {
+    left: none;
+    right: none;
+  }
+  
+  .pawn-promo-pos-a {
+    right: -5rem;
+    left: none;
+  }
+  .pawn-promo-pos-b {
+    right: -15rem;
+    left: none;
+  }
+  .pawn-promo-pos-c {
+    right: -25rem;
+    left: none;
+  }
+  .pawn-promo-pos-d {
+    right: -35rem;
+    left: none;
+  }
+  .pawn-promo-pos-e {
+    left: 0rem;
+    right: none;
+  }
+  .pawn-promo-pos-f {
+    left: 10rem;
+    right: none;
+  }
+  .pawn-promo-pos-g {
+    left: 20rem;
+    right: none;
+  }
+  .pawn-promo-pos-h {
+    left: 30rem;
+    right: none;
+  }
+
 /*  */
 @media (max-width:425px) {
     html{

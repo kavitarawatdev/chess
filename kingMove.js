@@ -70,8 +70,8 @@ const whiteKingMovement = (id) => {
             capturePieces.push(element);
         }
     });
-    let rooks = document.querySelectorAll(".white-rook");
-    let king = document.querySelector(".white-king");
+    let rooks = document.querySelectorAll(".box .white-rook");
+    let king = document.querySelector(".box .white-king");
     if(king.dataset.ischeck=="false" && king.dataset.ismoved=="false"){
         for (const rook of rooks) {
             if(rook.dataset.ismoved=="false"){
@@ -128,8 +128,8 @@ const blackKingMovement = (id) => {
             capturePieces.push(element);
         }
     });
-    let rooks = document.querySelectorAll(".black-rook");
-    let king = document.querySelector(".black-king");
+    let rooks = document.querySelectorAll(".box .black-rook");
+    let king = document.querySelector(".box .black-king");
     if(king.dataset.ischeck=="false" && king.dataset.ismoved=="false"){
         for (const rook of rooks) {
             if(rook.dataset.ismoved=="false"){
